@@ -232,7 +232,6 @@
             <p id="results-info" class="text-sm text-gray-500 dark:text-gray-400">
                 Start typing to search...
             </p>
-            <p id="active-filters" class="text-xs text-gray-500 dark:text-gray-400 mt-1 hidden"></p>
         </div>
 
         <!-- Search Results -->
@@ -287,104 +286,29 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Left Column -->
                 <div class="space-y-6">
-                    <!-- Main Genre Selection -->
+                    <!-- Genre Selection -->
                     <div>
-                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3">Main Genre</h3>
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3">Genre</h3>
                         <div class="flex flex-wrap gap-2">
                             <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Action">
+                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="action">
                                 <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Action</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Adventure">
+                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="adventure">
                                 <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Adventure</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Comedy">
+                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="comedy">
                                 <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Comedy</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Drama">
+                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="drama">
                                 <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Drama</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Fantasy">
+                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="fantasy">
                                 <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Fantasy</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Horror">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Horror</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Romance">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Romance</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Sci-Fi">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Sci-Fi</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Slice of Life">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Slice of Life</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Sports">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Sports</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Thriller">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Thriller</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Crime & Mystery">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Crime & Mystery</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Sub Genre Selection -->
-                    <div>
-                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3">Sub Genre</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Battle">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Battle</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Isekai">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Isekai</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Superhero">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Superhero</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Rom-Com">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Rom-Com</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Detective">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Detective</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Magical Girl">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Magical Girl</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Psychological">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Psychological</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Cyberpunk">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Cyberpunk</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Mecha">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Mecha</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="School Life">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">School Life</span>
                             </label>
                         </div>
                     </div>
@@ -394,94 +318,20 @@
                         <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3">Country</h3>
                         <div class="flex flex-wrap gap-2">
                             <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="USA">
+                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="usa">
                                 <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">USA</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Japan">
+                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="japan">
                                 <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Japan</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Korea">
+                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="korea">
                                 <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Korea</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="China">
+                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="china">
                                 <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">China</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="UK">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">United Kingdom</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="India">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">India</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="France">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">France</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Germany">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Germany</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Canada">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Canada</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Australia">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Australia</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Spain">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Spain</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Italy">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Italy</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Thailand">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Thailand</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Turkey">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Turkey</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Brazil">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Brazil</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column -->
-                <div class="space-y-6">
-                    <!-- Anime/Manga Demographics -->
-                    <div>
-                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3">Anime/Manga Demographics</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Shonen">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Shonen</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Shojo">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Shojo</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Seinen">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Seinen</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Josei">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Josei</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="Kodomomuke">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Kodomomuke</span>
                             </label>
                         </div>
                     </div>
@@ -490,11 +340,14 @@
                     <div>
                         <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3">Year</h3>
                         <div class="grid grid-cols-2 gap-2">
-                            <input type="number" id="year-from" placeholder="From" min="1900" max="2024" class="bg-gray-100 dark:bg-[#151926] border-none rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary">
-                            <input type="number" id="year-to" placeholder="To" min="1900" max="2024" class="bg-gray-100 dark:bg-[#151926] border-none rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary">
+                            <input type="number" placeholder="From" min="1900" max="2024" class="bg-gray-100 dark:bg-[#151926] border-none rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary">
+                            <input type="number" placeholder="To" min="1900" max="2024" class="bg-gray-100 dark:bg-[#151926] border-none rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary">
                         </div>
                     </div>
+                </div>
 
+                <!-- Right Column -->
+                <div class="space-y-6">
                     <!-- Rating Selection -->
                     <div>
                         <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3">Rating</h3>
@@ -515,10 +368,6 @@
                                 <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="6+">
                                 <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">6+</span>
                             </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="5+">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">5+</span>
-                            </label>
                         </div>
                     </div>
 
@@ -527,24 +376,24 @@
                         <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3">Sort By</h3>
                         <div class="space-y-2">
                             <label class="flex items-center">
-                                <input type="radio" name="sort" value="latest" checked class="text-primary focus:ring-primary">
+                                <input type="radio" name="sort" value="latest" class="text-primary focus:ring-primary">
                                 <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Latest</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="sort" value="airing" class="text-primary focus:ring-primary">
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Airing</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="sort" value="upcoming" class="text-primary focus:ring-primary">
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Upcoming</span>
                             </label>
                             <label class="flex items-center">
                                 <input type="radio" name="sort" value="popular" class="text-primary focus:ring-primary">
                                 <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Popular</span>
                             </label>
                             <label class="flex items-center">
-                                <input type="radio" name="sort" value="rating" class="text-primary focus:ring-primary">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Rating</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="radio" name="sort" value="year" class="text-primary focus:ring-primary">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Year</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="radio" name="sort" value="title" class="text-primary focus:ring-primary">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Title A-Z</span>
+                                <input type="radio" name="sort" value="recommended" class="text-primary focus:ring-primary">
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Recommended</span>
                             </label>
                         </div>
                     </div>
@@ -568,14 +417,6 @@
                             <label class="inline-flex items-center">
                                 <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="drama">
                                 <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Drama</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="ova">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">OVA</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" value="special">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Special</span>
                             </label>
                         </div>
                     </div>
@@ -624,181 +465,122 @@
 </footer>
 
 <script>
+    // Sample data with streaming URLs - You can replace this with your JSON data
+    const showsData = [
+        {
+            id: "mha-s1",
+            slug: "my-hero-academia-season-1",
+            title: "My Hero Academia Season 1",
+            originalTitle: "Boku no Hero Academia",
+            japaneseTitle: "僕のヒーローアカデミア",
+            synonyms: ["MHA Season 1", "Boku no Hero Academia S1"],
+            searchableTitle: "My Hero Academia Season 1 Boku no Hero Academia 僕のヒーローアカデミア MHA Season 1 Boku no Hero Academia S1",
+            airedYear: 2016,
+            dateAdded: "2024-12-16",
+            type: "anime",
+            featured: false,
+            rating: 8.0,
+            category: "action",
+            premiered: "Spring 2016",
+            duration: "24 min",
+            status: "Finished Airing",
+            description: "In a world where 80% of humanity possesses 'Quirks,' Izuku Midoriya is born powerless but gains a chance to become a hero after a fated meeting with All Might.",
+            posterUrl: "https://cdn.myanimelist.net/images/anime/10/78745l.jpg",
+            backdropUrl: "https://image.tmdb.org/t/p/original/6v6pBvM6oXG7WpYm8M9r8R0R6j.jpg",
+            trailerUrl: "https://www.youtube.com/watch?v=-77UEct0K7Q",
+            malScore: 7.96,
+            imdbScore: 8.4,
+            popularity: 99,
+            genres: ["Super Hero", "Action", "Fantasy", "School"],
+            cast: ["Daiki Yamashita", "Kenta Miyake", "Nobuhiko Okamoto"],
+            certification: "TV-14",
+            country: "Japan",
+            studio: "Bones",
+            producers: ["TOHO", "Shueisha"],
+            streamingUrl: "/stream/mha-s1", // Added streaming URL
+            seasons: []
+        },
+        {
+            id: "mha-s2",
+            slug: "my-hero-academia-season-2",
+            title: "My Hero Academia Season 2",
+            originalTitle: "Boku no Hero Academia 2nd Season",
+            japaneseTitle: "僕のヒーローアカデミア 2nd Season",
+            synonyms: ["MHA Season 2"],
+            searchableTitle: "My Hero Academia Season 2 Boku no Hero Academia 2nd Season 僕のヒーローアカデミア 2nd Season MHA Season 2",
+            airedYear: 2017,
+            dateAdded: "2024-12-01",
+            type: "anime",
+            featured: false,
+            rating: 8.1,
+            category: "action",
+            premiered: "Spring 2017",
+            duration: "24 min",
+            status: "Finished Airing",
+            description: "The UA students compete in the world-renowned Sports Festival. Later, Deku, Iida, and Todoroki face off against the fearsome Hero Killer: Stain.",
+            posterUrl: "https://cdn.myanimelist.net/images/anime/12/85221l.jpg",
+            backdropUrl: "https://image.tmdb.org/t/p/original/6v6pBvM6oXG7WpYm8M9r8R0R6j.jpg",
+            trailerUrl: "https://www.youtube.com/watch?v=42X4H9G5I6c",
+            malScore: 8.15,
+            imdbScore: 8.5,
+            popularity: 97,
+            genres: ["Animation", "Action", "School", "Shounen"],
+            cast: ["Daiki Yamashita", "Nobuhiko Okamoto", "Yuki Kaji"],
+            certification: "TV-14",
+            country: "Japan",
+            studio: "Bones",
+            producers: ["TOHO", "Shueisha"],
+            streamingUrl: "/stream/mha-s2", // Added streaming URL
+            seasons: []
+        },
+        {
+            id: "mha-s3",
+            slug: "my-hero-academia-season-3",
+            title: "My Hero Academia Season 3",
+            originalTitle: "Boku no Hero Academia 3rd Season",
+            japaneseTitle: "僕のヒーローアカデミア 3rd Season",
+            synonyms: ["MHA Season 3"],
+            searchableTitle: "My Hero Academia Season 3 Boku no Hero Academia 3rd Season 僕のヒーローアカデミア 3rd Season MHA Season 3",
+            airedYear: 2018,
+            dateAdded: "2024-12-01",
+            type: "anime",
+            featured: false,
+            rating: 8.1,
+            category: "action",
+            premiered: "Spring 2018",
+            duration: "24 min",
+            status: "Finished Airing",
+            description: "During a summer training camp, the League of Villains launches a surprise attack. This leads to the historic final battle between All Might and All For One.",
+            posterUrl: "https://cdn.myanimelist.net/images/anime/1319/92084l.jpg",
+            backdropUrl: "https://image.tmdb.org/t/p/original/9r9rYm8M9r8R0R6j.jpg",
+            trailerUrl: "https://www.youtube.com/watch?v=VQGCKyvzIM4",
+            malScore: 8.12,
+            imdbScore: 8.6,
+            popularity: 96,
+            genres: ["Super Hero", "Action", "School", "Shounen"],
+            cast: ["Daiki Yamashita", "Kenta Miyake", "Akio Otsuka"],
+            certification: "TV-14",
+            country: "Japan",
+            studio: "Bones",
+            producers: ["TOHO", "Shueisha"],
+            streamingUrl: "/stream/mha-s3", // Added streaming URL
+            seasons: []
+        }
+    ];
+
     // State management
     let currentPage = 1;
     const itemsPerPage = 20;
     let currentLayout = 'list'; // Default layout
     let currentSearchMode = 'title'; // Default search mode
     let currentSearchTerm = '';
-    let currentFilters = {
-        mainGenres: [],
-        subGenres: [],
-        countries: [],
-        demographics: [],
-        types: [],
-        rating: [],
-        yearFrom: null,
-        yearTo: null,
-        sortBy: 'latest'
-    };
-    let allShowsData = [];
+    let currentFilters = {};
 
-    // Initialize - Fetch data from your GitHub repo
-    document.addEventListener('DOMContentLoaded', async function() {
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
         setLayout('list');
         setSearchMode('title');
-        
-        try {
-            // Fetch data from your GitHub repository
-            const response = await fetch('https://raw.githubusercontent.com/Varvoul/StreamSphere/refs/heads/main/data/posts.json');
-            if (!response.ok) throw new Error('Failed to fetch data');
-            
-            const jsonData = await response.json();
-            
-            // Transform the data to match expected format
-            allShowsData = transformData(jsonData);
-            
-            console.log('Loaded shows:', allShowsData.length);
-            
-            // Check URL for search parameters
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchParam = urlParams.get('q');
-            if (searchParam) {
-                document.getElementById('main-search').value = searchParam;
-                document.getElementById('header-search').value = searchParam;
-                performSearch(searchParam);
-            }
-        } catch (error) {
-            console.error('Error loading data:', error);
-            document.getElementById('results-info').textContent = 'Error loading data. Please refresh the page.';
-            
-            // Use sample data as fallback
-            allShowsData = getSampleData();
-        }
     });
-
-    // Transform your JSON data to match expected format
-    function transformData(jsonData) {
-        // Assuming your posts.json is an array of show objects
-        return jsonData.map(show => ({
-            id: show.id || show.slug || Math.random().toString(36).substr(2, 9),
-            slug: show.slug || show.id || '',
-            title: show.title || '',
-            originalTitle: show.originalTitle || show.title || '',
-            japaneseTitle: show.japaneseTitle || '',
-            synonyms: Array.isArray(show.synonyms) ? show.synonyms : 
-                     (show.synonyms ? show.synonyms.split(',').map(s => s.trim()) : []),
-            searchableTitle: `${show.title || ''} ${show.japaneseTitle || ''} ${Array.isArray(show.synonyms) ? show.synonyms.join(' ') : ''}`.toLowerCase(),
-            airedYear: show.airedYear || show.year || new Date(show.dateAdded || Date.now()).getFullYear(),
-            dateAdded: show.dateAdded || new Date().toISOString().split('T')[0],
-            type: show.type || 'anime',
-            featured: show.featured || false,
-            rating: show.rating || show.imdbScore || show.malScore || 0,
-            category: show.category || 'action',
-            premiered: show.premiered || `Season ${show.airedYear || 'Unknown'}`,
-            duration: show.duration || '24 min',
-            status: show.status || 'Finished Airing',
-            description: show.description || 'No description available.',
-            posterUrl: show.posterUrl || show.image || '',
-            backdropUrl: show.backdropUrl || show.posterUrl || show.image || '',
-            trailerUrl: show.trailerUrl || '',
-            malScore: show.malScore || 0,
-            imdbScore: show.imdbScore || 0,
-            popularity: show.popularity || 0,
-            genres: Array.isArray(show.genres) ? show.genres : 
-                   (show.genres ? show.genres.split(',').map(g => g.trim()) : []),
-            cast: Array.isArray(show.cast) ? show.cast : 
-                 (show.cast ? show.cast.split(',').map(c => c.trim()) : []),
-            certification: show.certification || 'TV-14',
-            country: show.country || 'Japan',
-            studio: show.studio || '',
-            producers: Array.isArray(show.producers) ? show.producers : [],
-            streamingUrl: show.streamingUrl || `/stream/${show.slug || show.id}`,
-            seasons: show.seasons || [],
-            // Additional fields from your data
-            mainGenre: show.mainGenre || show.genres?.[0] || 'Action',
-            subGenre: show.subGenre || show.genres?.[1] || '',
-            demographic: show.demographic || ''
-        }));
-    }
-
-    // Fallback sample data
-    function getSampleData() {
-        return [
-            {
-                id: "mha-s1",
-                slug: "my-hero-academia-season-1",
-                title: "My Hero Academia Season 1",
-                originalTitle: "Boku no Hero Academia",
-                japaneseTitle: "僕のヒーローアカデミア",
-                synonyms: ["MHA Season 1", "Boku no Hero Academia S1"],
-                searchableTitle: "my hero academia season 1 boku no hero academia 僕のヒーローアカデミア mha season 1 boku no hero academia s1",
-                airedYear: 2016,
-                dateAdded: "2024-12-16",
-                type: "anime",
-                featured: false,
-                rating: 8.0,
-                category: "action",
-                premiered: "Spring 2016",
-                duration: "24 min",
-                status: "Finished Airing",
-                description: "In a world where 80% of humanity possesses 'Quirks,' Izuku Midoriya is born powerless but gains a chance to become a hero after a fated meeting with All Might.",
-                posterUrl: "https://cdn.myanimelist.net/images/anime/10/78745l.jpg",
-                backdropUrl: "https://image.tmdb.org/t/p/original/6v6pBvM6oXG7WpYm8M9r8R0R6j.jpg",
-                trailerUrl: "https://www.youtube.com/watch?v=-77UEct0K7Q",
-                malScore: 7.96,
-                imdbScore: 8.4,
-                popularity: 99,
-                genres: ["Super Hero", "Action", "Fantasy", "School", "Battle", "Shonen"],
-                cast: ["Daiki Yamashita", "Kenta Miyake", "Nobuhiko Okamoto"],
-                certification: "TV-14",
-                country: "Japan",
-                studio: "Bones",
-                producers: ["TOHO", "Shueisha"],
-                streamingUrl: "/stream/mha-s1",
-                seasons: [],
-                mainGenre: "Action",
-                subGenre: "Battle",
-                demographic: "Shonen"
-            },
-            {
-                id: "mha-s2",
-                slug: "my-hero-academia-season-2",
-                title: "My Hero Academia Season 2",
-                originalTitle: "Boku no Hero Academia 2nd Season",
-                japaneseTitle: "僕のヒーローアカデミア 2nd Season",
-                synonyms: ["MHA Season 2"],
-                searchableTitle: "my hero academia season 2 boku no hero academia 2nd season 僕のヒーローアカデミア 2nd season mha season 2",
-                airedYear: 2017,
-                dateAdded: "2024-12-01",
-                type: "anime",
-                featured: false,
-                rating: 8.1,
-                category: "action",
-                premiered: "Spring 2017",
-                duration: "24 min",
-                status: "Finished Airing",
-                description: "The UA students compete in the world-renowned Sports Festival. Later, Deku, Iida, and Todoroki face off against the fearsome Hero Killer: Stain.",
-                posterUrl: "https://cdn.myanimelist.net/images/anime/12/85221l.jpg",
-                backdropUrl: "https://image.tmdb.org/t/p/original/6v6pBvM6oXG7WpYm8M9r8R0R6j.jpg",
-                trailerUrl: "https://www.youtube.com/watch?v=42X4H9G5I6c",
-                malScore: 8.15,
-                imdbScore: 8.5,
-                popularity: 97,
-                genres: ["Animation", "Action", "School", "Shounen", "Battle"],
-                cast: ["Daiki Yamashita", "Nobuhiko Okamoto", "Yuki Kaji"],
-                certification: "TV-14",
-                country: "Japan",
-                studio: "Bones",
-                producers: ["TOHO", "Shueisha"],
-                streamingUrl: "/stream/mha-s2",
-                seasons: [],
-                mainGenre: "Action",
-                subGenre: "Battle",
-                demographic: "Shonen"
-            }
-        ];
-    }
 
     // Search functionality
     function debouncedSearch(term) {
@@ -812,129 +594,35 @@
         currentSearchTerm = term.toLowerCase().trim();
         currentPage = 1;
         
-        if (currentSearchTerm.length < 2 && !hasActiveFilters()) {
+        if (currentSearchTerm.length < 2) {
             clearResults();
             return;
         }
         
-        const results = filterShows();
+        const results = filterShows(currentSearchTerm);
         displayResults(results);
     }
 
-    function hasActiveFilters() {
-        return Object.values(currentFilters).some(filter => {
-            if (Array.isArray(filter)) {
-                return filter.length > 0;
+    function filterShows(searchTerm) {
+        return showsData.filter(show => {
+            // Search based on current mode
+            let searchableText = '';
+            switch(currentSearchMode) {
+                case 'title':
+                    searchableText = show.title.toLowerCase();
+                    break;
+                case 'japanese':
+                    searchableText = show.japaneseTitle.toLowerCase();
+                    break;
+                case 'synonyms':
+                    searchableText = show.synonyms.join(' ').toLowerCase();
+                    break;
+                default:
+                    searchableText = show.searchableTitle.toLowerCase();
             }
-            return filter !== null && filter !== undefined && filter !== '';
+            
+            return searchableText.includes(searchTerm);
         });
-    }
-
-    function filterShows() {
-        return allShowsData.filter(show => {
-            // Text search
-            let matchesText = true;
-            if (currentSearchTerm.length >= 2) {
-                let searchableText = '';
-                switch(currentSearchMode) {
-                    case 'title':
-                        searchableText = show.title.toLowerCase();
-                        break;
-                    case 'japanese':
-                        searchableText = show.japaneseTitle.toLowerCase();
-                        break;
-                    case 'synonyms':
-                        searchableText = show.synonyms.join(' ').toLowerCase();
-                        break;
-                    default:
-                        searchableText = show.searchableTitle.toLowerCase();
-                }
-                matchesText = searchableText.includes(currentSearchTerm);
-            }
-            
-            // Filter by main genres
-            let matchesMainGenres = true;
-            if (currentFilters.mainGenres.length > 0) {
-                matchesMainGenres = currentFilters.mainGenres.some(genre => 
-                    show.mainGenre === genre || 
-                    show.genres.includes(genre) ||
-                    show.category === genre.toLowerCase()
-                );
-            }
-            
-            // Filter by sub genres
-            let matchesSubGenres = true;
-            if (currentFilters.subGenres.length > 0) {
-                matchesSubGenres = currentFilters.subGenres.some(subGenre => 
-                    show.subGenre === subGenre || 
-                    show.genres.includes(subGenre)
-                );
-            }
-            
-            // Filter by countries
-            let matchesCountries = true;
-            if (currentFilters.countries.length > 0) {
-                matchesCountries = currentFilters.countries.some(country => 
-                    show.country.toLowerCase().includes(country.toLowerCase())
-                );
-            }
-            
-            // Filter by demographics
-            let matchesDemographics = true;
-            if (currentFilters.demographics.length > 0) {
-                matchesDemographics = currentFilters.demographics.some(demo => 
-                    show.demographic === demo || 
-                    show.genres.includes(demo)
-                );
-            }
-            
-            // Filter by types
-            let matchesTypes = true;
-            if (currentFilters.types.length > 0) {
-                matchesTypes = currentFilters.types.some(type => 
-                    show.type.toLowerCase() === type.toLowerCase()
-                );
-            }
-            
-            // Filter by rating
-            let matchesRating = true;
-            if (currentFilters.rating.length > 0) {
-                matchesRating = currentFilters.rating.some(ratingFilter => {
-                    const minRating = parseFloat(ratingFilter);
-                    return show.rating >= minRating;
-                });
-            }
-            
-            // Filter by year range
-            let matchesYear = true;
-            if (currentFilters.yearFrom) {
-                matchesYear = show.airedYear >= currentFilters.yearFrom;
-            }
-            if (currentFilters.yearTo) {
-                matchesYear = matchesYear && show.airedYear <= currentFilters.yearTo;
-            }
-            
-            return matchesText && matchesMainGenres && matchesSubGenres && 
-                   matchesCountries && matchesDemographics && matchesTypes && 
-                   matchesRating && matchesYear;
-        });
-    }
-
-    function sortShows(shows) {
-        switch(currentFilters.sortBy) {
-            case 'latest':
-                return shows.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
-            case 'popular':
-                return shows.sort((a, b) => b.popularity - a.popularity);
-            case 'rating':
-                return shows.sort((a, b) => b.rating - a.rating);
-            case 'year':
-                return shows.sort((a, b) => b.airedYear - a.airedYear);
-            case 'title':
-                return shows.sort((a, b) => a.title.localeCompare(b.title));
-            default:
-                return shows;
-        }
     }
 
     function displayResults(results) {
@@ -942,50 +630,22 @@
         const noResults = document.getElementById('no-results');
         const pagination = document.getElementById('pagination');
         const resultsInfo = document.getElementById('results-info');
-        const activeFilters = document.getElementById('active-filters');
         
-        // Sort results
-        const sortedResults = sortShows([...results]);
-        
-        if (sortedResults.length === 0) {
+        if (results.length === 0) {
             resultsContainer.innerHTML = '';
             noResults.classList.remove('hidden');
             pagination.classList.add('hidden');
-            
-            let message = 'No results found';
-            if (currentSearchTerm.length >= 2 || hasActiveFilters()) {
-                message = `No results found for "${currentSearchTerm || 'your search'}"`;
-                if (hasActiveFilters()) {
-                    message += ' with the selected filters';
-                }
-            }
-            resultsInfo.textContent = message;
-            activeFilters.classList.add('hidden');
+            resultsInfo.textContent = 'No results found';
             return;
         }
         
         noResults.classList.add('hidden');
-        
-        // Update results info
-        let infoText = `Found ${sortedResults.length} result${sortedResults.length !== 1 ? 's' : ''}`;
-        if (currentSearchTerm.length >= 2) {
-            infoText += ` for "${currentSearchTerm}"`;
-        }
-        resultsInfo.textContent = infoText;
-        
-        // Update active filters display
-        const filterText = getActiveFiltersText();
-        if (filterText) {
-            activeFilters.textContent = `Active filters: ${filterText}`;
-            activeFilters.classList.remove('hidden');
-        } else {
-            activeFilters.classList.add('hidden');
-        }
+        resultsInfo.textContent = `Found ${results.length} results for "${currentSearchTerm}"`;
         
         // Apply pagination
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
-        const paginatedResults = sortedResults.slice(startIndex, endIndex);
+        const paginatedResults = results.slice(startIndex, endIndex);
         
         // Render based on layout
         if (currentLayout === 'grid') {
@@ -995,41 +655,7 @@
         }
         
         // Update pagination
-        updatePagination(sortedResults.length);
-    }
-
-    function getActiveFiltersText() {
-        const parts = [];
-        
-        if (currentFilters.mainGenres.length > 0) {
-            parts.push(`Main: ${currentFilters.mainGenres.join(', ')}`);
-        }
-        if (currentFilters.subGenres.length > 0) {
-            parts.push(`Sub: ${currentFilters.subGenres.join(', ')}`);
-        }
-        if (currentFilters.countries.length > 0) {
-            parts.push(`Countries: ${currentFilters.countries.join(', ')}`);
-        }
-        if (currentFilters.demographics.length > 0) {
-            parts.push(`Demographics: ${currentFilters.demographics.join(', ')}`);
-        }
-        if (currentFilters.types.length > 0) {
-            parts.push(`Types: ${currentFilters.types.join(', ')}`);
-        }
-        if (currentFilters.rating.length > 0) {
-            parts.push(`Rating: ${currentFilters.rating.join(', ')}`);
-        }
-        if (currentFilters.yearFrom || currentFilters.yearTo) {
-            const yearText = [];
-            if (currentFilters.yearFrom) yearText.push(`From ${currentFilters.yearFrom}`);
-            if (currentFilters.yearTo) yearText.push(`To ${currentFilters.yearTo}`);
-            parts.push(`Year: ${yearText.join(' - ')}`);
-        }
-        if (currentFilters.sortBy !== 'latest') {
-            parts.push(`Sort: ${currentFilters.sortBy}`);
-        }
-        
-        return parts.join(' | ');
+        updatePagination(results.length);
     }
 
     function clearResults() {
@@ -1037,7 +663,6 @@
         document.getElementById('no-results').classList.add('hidden');
         document.getElementById('pagination').classList.add('hidden');
         document.getElementById('results-info').textContent = 'Start typing to search...';
-        document.getElementById('active-filters').classList.add('hidden');
     }
 
     // Layout functions
@@ -1061,8 +686,8 @@
         }
         
         // Re-render if we have results
-        if (currentSearchTerm.length >= 2 || hasActiveFilters()) {
-            const results = filterShows();
+        if (currentSearchTerm.length >= 2) {
+            const results = filterShows(currentSearchTerm);
             displayResults(results);
         }
     }
@@ -1083,8 +708,8 @@
         });
         
         // Re-search if we have a term
-        if (currentSearchTerm.length >= 2 || hasActiveFilters()) {
-            const results = filterShows();
+        if (currentSearchTerm.length >= 2) {
+            const results = filterShows(currentSearchTerm);
             displayResults(results);
         }
     }
@@ -1097,11 +722,15 @@
             html += `
                 <a href="${show.streamingUrl}" class="group relative block">
                     <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-gray-200 dark:bg-surface-dark shadow-sm transition-all duration-300 group-hover:shadow-lg group-hover:scale-[1.02] group-hover:-translate-y-1">
-                        <img alt="${show.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${show.posterUrl}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x450?text=No+Image'"/>
+                        <img alt="${show.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${show.posterUrl}" loading="lazy"/>
                         <div class="absolute top-2 right-2 bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm">HD</div>
-                        ${show.rating >= 7 ? `
+                        ${show.type === 'anime' ? `
                         <div class="absolute top-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
-                            <span class="material-symbols-outlined text-[10px] filled text-yellow-400">star</span> ${show.rating.toFixed(1)}
+                            <span class="material-symbols-outlined text-[10px] filled text-yellow-400">star</span> ${show.malScore}
+                        </div>
+                        ` : show.imdbScore ? `
+                        <div class="absolute top-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                            <span class="material-symbols-outlined text-[10px] filled text-yellow-400">star</span> ${show.imdbScore}
                         </div>
                         ` : ''}
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -1129,15 +758,15 @@
         
         shows.forEach(show => {
             const rating = show.type === 'anime' ? 
-                `MAL: ${show.malScore ? show.malScore.toFixed(1) : 'N/A'}` : 
-                (show.imdbScore ? `IMDb: ${show.imdbScore.toFixed(1)}` : '');
+                `MAL: ${show.malScore}` : 
+                (show.imdbScore ? `IMDb: ${show.imdbScore}` : '');
             
             html += `
                 <a href="${show.streamingUrl}" class="group block">
                     <div class="flex items-start gap-4 p-4 bg-white dark:bg-[#151926] rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                         <div class="flex-shrink-0 w-24 md:w-32">
                             <div class="relative aspect-[2/3] rounded-lg overflow-hidden">
-                                <img alt="${show.title}" class="w-full h-full object-cover" src="${show.posterUrl}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x450?text=No+Image'"/>
+                                <img alt="${show.title}" class="w-full h-full object-cover" src="${show.posterUrl}" loading="lazy"/>
                                 <div class="absolute top-2 right-2 bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm">HD</div>
                             </div>
                         </div>
@@ -1159,12 +788,12 @@
                             <div class="flex flex-wrap items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mt-3">
                                 <span>${show.airedYear}</span>
                                 <span class="w-1 h-1 bg-gray-500 rounded-full"></span>
-                                <span>${show.country}</span>
+                                <span>${show.status}</span>
                                 <span class="w-1 h-1 bg-gray-500 rounded-full"></span>
                                 <span>${show.genres.slice(0, 3).join(', ')}</span>
-                                ${show.demographic ? `
+                                ${show.cast.length > 0 ? `
                                 <span class="w-1 h-1 bg-gray-500 rounded-full"></span>
-                                <span class="text-primary font-medium">${show.demographic}</span>
+                                <span class="truncate">Cast: ${show.cast.slice(0, 2).join(', ')}</span>
                                 ` : ''}
                             </div>
                             
@@ -1172,11 +801,9 @@
                                 <p class="expanded-description text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                                     ${show.description}
                                 </p>
-                                ${show.description.length > 150 ? `
                                 <button onclick="event.preventDefault(); toggleDescription(this)" class="mt-2 text-sm text-primary hover:text-opacity-80 transition-colors">
                                     Read more
                                 </button>
-                                ` : ''}
                             </div>
                         </div>
                     </div>
@@ -1204,7 +831,7 @@
     }
 
     function changePage(direction) {
-        const results = filterShows();
+        const results = filterShows(currentSearchTerm);
         const totalPages = Math.ceil(results.length / itemsPerPage);
         
         const newPage = currentPage + direction;
@@ -1223,87 +850,31 @@
 
     function applyFilters() {
         // Collect filter values
-        const mainGenres = [];
-        const subGenres = [];
-        const countries = [];
-        const demographics = [];
-        const types = [];
-        const rating = [];
-        
-        // Get checked checkboxes
-        document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
-            const value = cb.value;
-            // Categorize based on known lists
-            if (['Action', 'Adventure', 'Comedy', 'Drama', 'Fantasy', 'Horror', 'Romance', 'Sci-Fi', 'Slice of Life', 'Sports', 'Thriller', 'Crime & Mystery'].includes(value)) {
-                mainGenres.push(value);
-            } else if (['Battle', 'Isekai', 'Superhero', 'Rom-Com', 'Detective', 'Magical Girl', 'Psychological', 'Cyberpunk', 'Mecha', 'School Life'].includes(value)) {
-                subGenres.push(value);
-            } else if (['Shonen', 'Shojo', 'Seinen', 'Josei', 'Kodomomuke'].includes(value)) {
-                demographics.push(value);
-            } else if (['USA', 'Japan', 'Korea', 'China', 'UK', 'India', 'France', 'Germany', 'Canada', 'Australia', 'Spain', 'Italy', 'Thailand', 'Turkey', 'Brazil'].includes(value)) {
-                countries.push(value);
-            } else if (['movie', 'tv', 'anime', 'drama', 'ova', 'special'].includes(value)) {
-                types.push(value);
-            } else if (['9+', '8+', '7+', '6+', '5+'].includes(value)) {
-                rating.push(parseFloat(value));
-            }
-        });
-        
-        // Get year range
-        const yearFrom = document.getElementById('year-from').value ? parseInt(document.getElementById('year-from').value) : null;
-        const yearTo = document.getElementById('year-to').value ? parseInt(document.getElementById('year-to').value) : null;
-        
-        // Get sort by
-        const sortBy = document.querySelector('input[name="sort"]:checked')?.value || 'latest';
-        
-        // Update current filters
-        currentFilters = {
-            mainGenres,
-            subGenres,
-            countries,
-            demographics,
-            types,
-            rating,
-            yearFrom,
-            yearTo,
-            sortBy
+        const filters = {
+            genres: [],
+            countries: [],
+            types: [],
+            sortBy: document.querySelector('input[name="sort"]:checked')?.value || 'latest',
+            // Add more filters as needed
         };
         
+        currentFilters = filters;
         toggleFilterModal();
-        currentPage = 1;
         
         // Re-apply search with filters
-        const results = filterShows();
-        displayResults(results);
+        if (currentSearchTerm.length >= 2) {
+            const results = filterShows(currentSearchTerm);
+            displayResults(results);
+        }
     }
 
     function clearFilters() {
         // Clear all filter inputs
         document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-        document.querySelectorAll('input[type="radio"]').forEach(rb => {
-            if (rb.value === 'latest') rb.checked = true;
-            else rb.checked = false;
-        });
+        document.querySelectorAll('input[type="radio"]').forEach(rb => rb.checked = false);
         document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
         
-        // Reset current filters
-        currentFilters = {
-            mainGenres: [],
-            subGenres: [],
-            countries: [],
-            demographics: [],
-            types: [],
-            rating: [],
-            yearFrom: null,
-            yearTo: null,
-            sortBy: 'latest'
-        };
-        
-        currentPage = 1;
-        
-        // Re-apply search without filters
-        const results = filterShows();
-        displayResults(results);
+        currentFilters = {};
     }
 
     // Helper functions
