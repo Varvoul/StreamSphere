@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Browse by Genre & Country - StreamSphere</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    primary: "#00F5FF",
+                    "genre-btn": "#78173f",
+                    "watch-btn": "#542438",
+                    "background-light": "#F8FAFC",
+                    "background-dark": "#0A0E17",
+                    "surface-dark": "#121828",
+                    "footer-dark": "#0C0E14",
+                    "text-light": "#E2E8F0",
+                    "text-muted": "#94A3B8",
+                    "footer-title": "#E8F4F8"
+                },
+                fontFamily: {
+                    display: ["Inter", "sans-serif"],
+                    body: ["Inter", "sans-serif"],
+                },
+                borderRadius: {
+                    DEFAULT: "0.5rem",
+                },
+            },
+        },
+    };
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    #mobile-menu {
+        transition: transform 0.3s ease-in-out;
+    }
+    .menu-open {
+        transform: translateX(0) !important;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+    .expanded-description {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    .expanded-description.expanded {
+        -webkit-line-clamp: unset;
+    }
+    .filter-overlay {
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(4px);
+    }
+    .genre-country-btn {
+        transition: all 0.3s ease;
+    }
+    .genre-country-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(120, 23, 63, 0.3);
+    }
+    .selected-filter {
+        background: linear-gradient(135deg, rgba(120, 23, 63, 0.9), rgba(84, 36, 56, 0.9));
+        border-color: #00F5FF;
+        color: white;
+    }
+    .multi-select-badge {
+        background: linear-gradient(135deg, #78173f, #542438);
+        color: white;
+        border: 1px solid rgba(0, 245, 255, 0.3);
+    }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-text-light transition-colors duration-300 min-h-screen flex flex-col relative">
+
+<!-- Mobile Menu Overlay -->
+<div class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden" id="mobile-menu-overlay" onclick="toggleMobileMenu()"></div>
+
+<!-- Mobile Menu -->
+<div class="fixed top-0 left-0 h-full w-64 bg-white dark:bg-[#151926] z-50 transform -translate-x-full lg:hidden overflow-y-auto shadow-2xl" id="mobile-menu">
+    <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+        <img alt="StreamSphere Logo" class="h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqiUc86NAc2oPWF0jZS6ltVT0qDRUQLGYe-vsh90aCjNPCKRUYsR2joEXfq121iCQ1DMhEXbbjY-Rm6ydRKKVvOD7XCHpsnpYv4oUDQP6h-KZ9tUpwQb33LAseATibNSPDDxAViL3XAYheHWPQCau7pQCd7-XFT2YjY86y-DFUxv6SfYoh27gsa2-RiKjPMnhZfSvjYzFQSeYDzy64a_9Lmf5_NT9MkYffdzHclH1EyMht0psBW3wqnbmTFh6wbG5Xh4VXCnRWONM"/>
+        <button class="text-gray-500 hover:text-primary" onclick="toggleMobileMenu()">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+    <div class="p-4 space-y-4">
+        <a class="block text-sm font-medium hover:text-primary py-2 border-b border-gray-100 dark:border-gray-800" href="index.html">Home</a>
+        <a class="block text-sm font-medium hover:text-primary py-2 border-b border-gray-100 dark:border-gray-800" href="search.html">Search</a>
+        <div class="py-2 border-b border-gray-100 dark:border-gray-800">
+            <button class="flex items-center justify-between w-full text-sm font-medium hover:text-primary focus:outline-none" onclick="toggleMobileDropdown('genre-mobile')">
+                <span>Genre</span>
+                <span class="material-symbols-outlined text-sm transform transition-transform" id="genre-arrow">expand_more</span>
+            </button>
+            <div class="hidden mt-2 ml-4 space-y-2 text-sm text-gray-500 dark:text-gray-400" id="genre-mobile">
+                <a class="block hover:text-primary" href="genre.html">All Genres</a>
+            </div>
+        </div>
+        <div class="py-2 border-b border-gray-100 dark:border-gray-800">
+            <button class="flex items-center justify-between w-full text-sm font-medium hover:text-primary focus:outline-none" onclick="toggleMobileDropdown('country-mobile')">
+                <span>Country</span>
+                <span class="material-symbols-outlined text-sm transform transition-transform" id="country-arrow">expand_more</span>
+            </button>
+            <div class="hidden mt-2 ml-4 space-y-2 text-sm text-gray-500 dark:text-gray-400" id="country-mobile">
+                <a class="block hover:text-primary" href="country.html">All Countries</a>
+            </div>
+        </div>
+        <a class="block text-sm font-medium hover:text-primary py-2 border-b border-gray-100 dark:border-gray-800" href="#">Top IMDB</a>
+        <a class="block text-sm font-medium hover:text-primary py-2" href="#">Updates</a>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="fixed top-0 w-full z-40 bg-white/95 dark:bg-[#0A0E17]/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 shadow-sm">
+    <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+            <button class="lg:hidden text-gray-600 dark:text-gray-200 focus:outline-none" onclick="toggleMobileMenu()">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </button>
+            <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+                <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+                <a class="hover:text-primary transition-colors" href="search.html">Search</a>
+                <div class="relative group">
+                    <button class="flex items-center space-x-1 hover:text-primary transition-colors focus:outline-none py-4">
+                        <span>Genre</span>
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+                    </button>
+                    <div class="absolute top-full left-0 w-[600px] bg-white dark:bg-[#1A1D29] rounded-b-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border-t-2 border-primary grid grid-cols-4 gap-4 p-6 z-50">
+                        <a class="block hover:text-primary text-sm text-gray-600 dark:text-gray-400" href="genre.html">All Genres</a>
+                        <a class="block hover:text-primary text-sm text-gray-600 dark:text-gray-400" href="genre.html?genre=Action">Action</a>
+                        <a class="block hover:text-primary text-sm text-gray-600 dark:text-gray-400" href="genre.html?genre=Adventure">Adventure</a>
+                        <a class="block hover:text-primary text-sm text-gray-600 dark:text-gray-400" href="genre.html?genre=Comedy">Comedy</a>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <button class="flex items-center space-x-1 hover:text-primary transition-colors focus:outline-none py-4">
+                        <span>Country</span>
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+                    </button>
+                    <div class="absolute top-full left-0 w-[600px] bg-white dark:bg-[#1A1D29] rounded-b-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border-t-2 border-primary grid grid-cols-4 gap-4 p-6 z-50">
+                        <a class="block hover:text-primary text-sm text-gray-600 dark:text-gray-400" href="country.html">All Countries</a>
+                        <a class="block hover:text-primary text-sm text-gray-600 dark:text-gray-400" href="country.html?country=USA">USA</a>
+                        <a class="block hover:text-primary text-sm text-gray-600 dark:text-gray-400" href="country.html?country=Japan">Japan</a>
+                        <a class="block hover:text-primary text-sm text-gray-600 dark:text-gray-400" href="country.html?country=Korea">Korea</a>
+                    </div>
+                </div>
+                <a class="hover:text-primary transition-colors" href="#">Top IMDB</a>
+                <a class="hover:text-primary transition-colors" href="#">Updates</a>
+            </nav>
+        </div>
+        <div class="absolute left-1/2 transform -translate-x-1/2">
+            <a class="block" href="index.html">
+                <span class="text-2xl font-bold bg-gradient-to-r from-cyan-500 to-purple-600 bg-clip-text text-transparent">StreamSphere</span>
+            </a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="search.html" class="text-gray-600 dark:text-gray-200 hover:text-primary">
+                <span class="material-symbols-outlined">search</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="flex-grow pt-24 pb-12 w-full max-w-[1920px] mx-auto min-h-screen">
+    <div class="container mx-auto px-4 lg:px-6">
+        <!-- Page Title -->
+        <div class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                <span class="bg-gradient-to-r from-cyan-500 to-purple-600 bg-clip-text text-transparent" id="page-title">
+                    Browse by Genre & Country
+                </span>
+            </h1>
+            <p class="text-gray-600 dark:text-gray-400" id="page-subtitle">
+                Select multiple genres and countries to filter shows
+            </p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="mb-8 p-6 bg-white dark:bg-surface-dark rounded-xl shadow-lg">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div class="flex-1">
+                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Filter Options</h2>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="toggleFilterType('genre')" id="genre-filter-btn" class="genre-country-btn px-4 py-2 bg-genre-btn text-white rounded-full font-medium hover:opacity-90 transition-all duration-300">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">category</span>
+                                Browse by Genre
+                            </span>
+                        </button>
+                        <button onclick="toggleFilterType('country')" id="country-filter-btn" class="genre-country-btn px-4 py-2 bg-genre-btn text-white rounded-full font-medium hover:opacity-90 transition-all duration-300">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">public</span>
+                                Browse by Country
+                            </span>
+                        </button>
+                        <button onclick="applyMultiFilters()" class="genre-country-btn px-4 py-2 bg-watch-btn text-white rounded-full font-medium hover:opacity-90 transition-all duration-300">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">filter_alt</span>
+                                Apply Filters
+                            </span>
+                        </button>
+                        <button onclick="clearAllFilters()" class="genre-country-btn px-4 py-2 bg-gray-600 text-white rounded-full font-medium hover:bg-gray-700 transition-all duration-300">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">refresh</span>
+                                Clear All
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Layout Toggle -->
+                <div class="flex items-center gap-2">
+                    <span class="text-sm text-gray-600 dark:text-gray-400">Layout:</span>
+                    <div class="flex bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+                        <button onclick="setLayout('grid')" id="grid-layout-btn" class="p-2 rounded hover:text-primary text-gray-500 dark:text-gray-400 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                            </svg>
+                        </button>
+                        <button onclick="setLayout('list')" id="list-layout-btn" class="p-2 rounded bg-white dark:bg-gray-700 shadow-sm text-primary">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selected Filters Display -->
+            <div class="mt-6" id="selected-filters-container">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3">Selected Filters</h3>
+                <div id="selected-filters" class="flex flex-wrap gap-2">
+                    <!-- Selected filters will appear here -->
+                </div>
+                <div id="no-filters" class="text-gray-500 dark:text-gray-400 text-sm">
+                    No filters selected. Click on genres or countries above to select.
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Grids Container -->
+        <div class="mb-8">
+            <!-- Genre Grid -->
+            <div id="genre-grid" class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Genres</h2>
+                    <button onclick="selectAllGenres()" class="text-sm text-primary hover:text-cyan-400 transition-colors">
+                        Select All
+                    </button>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+                    <!-- Genres will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Country Grid -->
+            <div id="country-grid" class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Countries</h2>
+                    <button onclick="selectAllCountries()" class="text-sm text-primary hover:text-cyan-400 transition-colors">
+                        Select All
+                    </button>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+                    <!-- Countries will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Info -->
+        <div class="mb-6">
+            <p id="results-info" class="text-sm text-gray-500 dark:text-gray-400">
+                Select genres and/or countries to filter shows
+            </p>
+            <div id="active-filters-info" class="hidden mt-2 text-sm text-primary">
+                <!-- Active filters info will appear here -->
+            </div>
+        </div>
+
+        <!-- Search Results -->
+        <div id="search-results">
+            <!-- Results will be loaded here -->
+        </div>
+
+        <!-- No Results -->
+        <div id="no-results" class="hidden text-center py-12">
+            <div class="mb-6">
+                <svg class="w-24 h-24 mx-auto text-gray-400 dark:text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">No shows found</h3>
+            <p class="text-gray-500 dark:text-gray-400 mb-6">Try selecting different genres or countries</p>
+            <button onclick="clearAllFilters()" class="inline-flex items-center gap-2 px-6 py-3 bg-watch-btn text-white rounded-full hover:opacity-90 transition-colors">
+                <span class="material-symbols-outlined">refresh</span>
+                Clear All Filters
+            </button>
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="hidden mt-12 flex justify-center">
+            <nav class="flex items-center gap-2">
+                <button onclick="changePage(-1)" class="px-3 py-2 rounded-lg bg-white dark:bg-[#151926] border border-gray-200 dark:border-gray-800 text-gray-500 hover:text-primary disabled:opacity-50 transition-colors">
+                    <span class="material-symbols-outlined text-sm">chevron_left</span>
+                </button>
+                <span id="page-numbers" class="px-4 text-sm text-gray-600 dark:text-gray-400"></span>
+                <button onclick="changePage(1)" class="px-3 py-2 rounded-lg bg-white dark:bg-[#151926] border border-gray-200 dark:border-gray-800 text-gray-500 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-sm">chevron_right</span>
+                </button>
+            </nav>
+        </div>
+    </div>
+</main>
+
+<footer class="bg-white dark:bg-footer-dark border-t border-gray-200 dark:border-gray-800 mt-auto">
+    <div class="container mx-auto px-4 py-8 md:py-12">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div class="flex-1 max-w-2xl">
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600"></div>
+                    <!-- Updated footer title color -->
+                    <span class="text-2xl font-bold text-footer-title">StreamSphere</span>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                    StreamSphere offers premium streaming of movies, TV shows, anime, and dramas in stunning quality. Stream effortlessly or save for later with easy downloads.
+                </p>
+                <p class="text-xs text-gray-500 dark:text-gray-500">
+                    This site does not store any files on our server, we only linked to the media which is hosted on 3rd party services.
+                    <br/>
+                    watch free movies, watch free tv shows, free movies online
+                </p>
+            </div>
+            <div class="flex flex-col items-center md:items-end gap-2 w-full md:w-auto">
+                <div class="flex gap-4 text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    <a class="hover:text-primary transition-colors" href="#">REQUEST</a>
+                    <a class="hover:text-primary transition-colors" href="#">CONTACT</a>
+                </div>
+                <div class="text-xs text-gray-500 dark:text-gray-500 mt-2 text-center md:text-right w-full">
+                    <span class="text-footer-title font-bold">StreamSphere</span>
+                    <br/>
+                    @ 2024 StreamSphere
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // State management
+    let currentPage = 1;
+    const itemsPerPage = 20;
+    let currentLayout = 'list';
+    let showsData = [];
+    let isLoading = false;
+    
+    // Multi-selection arrays
+    let selectedGenres = [];
+    let selectedCountries = [];
+    
+    // Active filter types
+    let activeFilterTypes = new Set(['genre', 'country']); // Both active by default
+
+    // Data URL
+    const DATA_URL = 'data/posts.json';
+
+    // Genre List
+    const genres = [
+        "Action", "Adventure", "Cars", "Comedy", "Dementia", "Demons", "Drama",
+        "Ecchi", "Fantasy", "Game", "Harem", "Historical", "Horror", "Isekai",
+        "Josei", "Kids", "Magic", "Martial Arts", "Mecha", "Military", "Music",
+        "Mystery", "Noir", "Parody", "Police", "Psychological", "Politic",
+        "Romance", "Reality-Show", "Reality-TV", "Samurai", "School", "Sci-Fi",
+        "Seinen", "Shoujo", "Shoujo Ai", "Shounen", "Shounen Ai", "Slice of Life",
+        "Space", "Sports", "Super Power", "Supernatural", "Thriller", "Vampire", "War"
+    ];
+
+    // Country List
+    const countries = [
+        "Argentina", "Australia", "Austria", "Bangladesh", "Belgium", "Brazil",
+        "Canada", "Chile", "China", "Colombia", "Czechia", "Denmark", "Egypt",
+        "Finland", "France", "Germany", "Greece", "Hong Kong", "Hungary",
+        "Iceland", "India", "Indonesia", "Iran", "Ireland", "Israel", "Italy",
+        "Japan", "Mexico", "Netherlands", "New Zealand", "Nigeria", "Pakistan",
+        "Philippines", "Poland", "Russia", "South Africa", "Spain", "Sweden",
+        "Taiwan", "Thailand", "Turkey", "UK"
+    ];
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', async function() {
+        setLayout('list');
+        await loadShowsData();
+        
+        // Check URL parameters for initial selections
+        const urlParams = new URLSearchParams(window.location.search);
+        const genreParams = urlParams.get('genres');
+        const countryParams = urlParams.get('countries');
+        
+        if (genreParams) {
+            selectedGenres = genreParams.split(',');
+        }
+        if (countryParams) {
+            selectedCountries = countryParams.split(',');
+        }
+        
+        loadFilterGrids();
+        updateSelectedFiltersDisplay();
+        
+        // Apply filters if we have initial selections
+        if (selectedGenres.length > 0 || selectedCountries.length > 0) {
+            setTimeout(() => applyMultiFilters(), 100);
+        }
+    });
+
+    // Load shows data
+    async function loadShowsData() {
+        try {
+            isLoading = true;
+            
+            const response = await fetch(DATA_URL);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            
+            showsData = await response.json();
+            
+            // Add streamingUrl if missing
+            showsData = showsData.map(show => ({
+                ...show,
+                streamingUrl: show.streamingUrl || `streaming.html?id=${show.id}`
+            }));
+            
+            console.log(`✅ Loaded ${showsData.length} shows`);
+            isLoading = false;
+            
+        } catch (error) {
+            console.error('❌ Error loading shows data:', error);
+            showsData = getSampleData();
+            isLoading = false;
+        }
+    }
+
+    // Toggle filter type visibility
+    function toggleFilterType(type) {
+        const genreGrid = document.getElementById('genre-grid');
+        const countryGrid = document.getElementById('country-grid');
+        
+        if (type === 'genre') {
+            if (activeFilterTypes.has('genre')) {
+                activeFilterTypes.delete('genre');
+                genreGrid.classList.add('hidden');
+            } else {
+                activeFilterTypes.add('genre');
+                genreGrid.classList.remove('hidden');
+            }
+        } else if (type === 'country') {
+            if (activeFilterTypes.has('country')) {
+                activeFilterTypes.delete('country');
+                countryGrid.classList.add('hidden');
+            } else {
+                activeFilterTypes.add('country');
+                countryGrid.classList.remove('hidden');
+            }
+        }
+        
+        // Update button states
+        updateFilterTypeButtons();
+    }
+
+    // Update filter type button states
+    function updateFilterTypeButtons() {
+        const genreBtn = document.getElementById('genre-filter-btn');
+        const countryBtn = document.getElementById('country-filter-btn');
+        
+        if (activeFilterTypes.has('genre')) {
+            genreBtn.classList.add('selected-filter');
+            genreBtn.classList.remove('bg-gray-600');
+            genreBtn.classList.add('bg-genre-btn');
+        } else {
+            genreBtn.classList.remove('selected-filter');
+            genreBtn.classList.remove('bg-genre-btn');
+            genreBtn.classList.add('bg-gray-600');
+        }
+        
+        if (activeFilterTypes.has('country')) {
+            countryBtn.classList.add('selected-filter');
+            countryBtn.classList.remove('bg-gray-600');
+            countryBtn.classList.add('bg-genre-btn');
+        } else {
+            countryBtn.classList.remove('selected-filter');
+            countryBtn.classList.remove('bg-genre-btn');
+            countryBtn.classList.add('bg-gray-600');
+        }
+    }
+
+    // Load filter grids
+    function loadFilterGrids() {
+        const genreGrid = document.getElementById('genre-grid').querySelector('.grid');
+        const countryGrid = document.getElementById('country-grid').querySelector('.grid');
+        
+        // Load genres
+        genreGrid.innerHTML = '';
+        genres.forEach(genre => {
+            const isSelected = selectedGenres.includes(genre);
+            genreGrid.innerHTML += `
+                <button onclick="toggleGenreSelection('${genre}')" 
+                        class="genre-country-btn p-3 ${isSelected ? 'selected-filter' : 'bg-white dark:bg-gray-800'} rounded-lg border ${isSelected ? 'border-primary' : 'border-gray-200 dark:border-gray-700'} hover:border-primary transition-all duration-300 text-left">
+                    <div class="flex items-center justify-between">
+                        <span class="font-medium ${isSelected ? 'text-white' : 'text-gray-900 dark:text-white'}">${genre}</span>
+                        ${isSelected ? 
+                            `<span class="material-symbols-outlined text-white">check</span>` :
+                            `<span class="material-symbols-outlined text-gray-400">add</span>`
+                        }
+                    </div>
+                </button>
+            `;
+        });
+        
+        // Load countries
+        countryGrid.innerHTML = '';
+        countries.forEach(country => {
+            const isSelected = selectedCountries.includes(country);
+            countryGrid.innerHTML += `
+                <button onclick="toggleCountrySelection('${country}')" 
+                        class="genre-country-btn p-3 ${isSelected ? 'selected-filter' : 'bg-white dark:bg-gray-800'} rounded-lg border ${isSelected ? 'border-primary' : 'border-gray-200 dark:border-gray-700'} hover:border-primary transition-all duration-300 text-left">
+                    <div class="flex items-center justify-between">
+                        <span class="font-medium ${isSelected ? 'text-white' : 'text-gray-900 dark:text-white'}">${country}</span>
+                        ${isSelected ? 
+                            `<span class="material-symbols-outlined text-white">check</span>` :
+                            `<span class="material-symbols-outlined text-gray-400">add</span>`
+                        }
+                    </div>
+                </button>
+            `;
+        });
+    }
+
+    // Toggle genre selection
+    function toggleGenreSelection(genre) {
+        const index = selectedGenres.indexOf(genre);
+        if (index === -1) {
+            selectedGenres.push(genre);
+        } else {
+            selectedGenres.splice(index, 1);
+        }
+        
+        // Update UI
+        loadFilterGrids();
+        updateSelectedFiltersDisplay();
+    }
+
+    // Toggle country selection
+    function toggleCountrySelection(country) {
+        const index = selectedCountries.indexOf(country);
+        if (index === -1) {
+            selectedCountries.push(country);
+        } else {
+            selectedCountries.splice(index, 1);
+        }
+        
+        // Update UI
+        loadFilterGrids();
+        updateSelectedFiltersDisplay();
+    }
+
+    // Select all genres
+    function selectAllGenres() {
+        selectedGenres = [...genres];
+        loadFilterGrids();
+        updateSelectedFiltersDisplay();
+    }
+
+    // Select all countries
+    function selectAllCountries() {
+        selectedCountries = [...countries];
+        loadFilterGrids();
+        updateSelectedFiltersDisplay();
+    }
+
+    // Update selected filters display
+    function updateSelectedFiltersDisplay() {
+        const container = document.getElementById('selected-filters');
+        const noFilters = document.getElementById('no-filters');
+        
+        container.innerHTML = '';
+        
+        // Update genre badges to SVG as well (optional)
+selectedGenres.forEach(genre => {
+    container.innerHTML += `
+        <div class="multi-select-badge px-3 py-1.5 rounded-full flex items-center gap-2">
+            <span class="text-xs flex items-center gap-1">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
+                </svg>
+                ${genre}
+            </span>
+            <button onclick="toggleGenreSelection('${genre}')" class="hover:text-red-300 ml-1">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+            </button>
+        </div>
+    `;
+});
+        
+// Add country badges
+selectedCountries.forEach(country => {
+    container.innerHTML += `
+        <div class="multi-select-badge px-3 py-1.5 rounded-full flex items-center gap-2">
+            <span class="text-xs flex items-center gap-1">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                ${country}
+            </span>
+            <button onclick="toggleCountrySelection('${country}')" class="hover:text-red-300 ml-1">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+            </button>
+        </div>
+    `;
+});
+        
+        // Show/hide no filters message
+        if (selectedGenres.length === 0 && selectedCountries.length === 0) {
+            noFilters.classList.remove('hidden');
+        } else {
+            noFilters.classList.add('hidden');
+        }
+    }
+
+    // Apply multi filters
+    function applyMultiFilters() {
+        currentPage = 1;
+        
+        // Update URL
+        const url = new URL(window.location);
+        
+        if (selectedGenres.length > 0) {
+            url.searchParams.set('genres', selectedGenres.join(','));
+        } else {
+            url.searchParams.delete('genres');
+        }
+        
+        if (selectedCountries.length > 0) {
+            url.searchParams.set('countries', selectedCountries.join(','));
+        } else {
+            url.searchParams.delete('countries');
+        }
+        
+        window.history.pushState({}, '', url);
+        
+        // Filter shows
+        filterShows();
+    }
+
+    // Filter shows based on multi-selection
+    function filterShows() {
+        if ((selectedGenres.length === 0 && selectedCountries.length === 0) || showsData.length === 0) {
+            clearResults();
+            return;
+        }
+        
+        const results = showsData.filter(show => {
+            let matchesGenre = false;
+            let matchesCountry = false;
+            
+            // Check genre matches
+            if (selectedGenres.length > 0) {
+                matchesGenre = show.genres && selectedGenres.some(genre => 
+                    show.genres.some(g => g.toLowerCase() === genre.toLowerCase())
+                );
+            } else {
+                matchesGenre = true; // No genre filter selected
+            }
+            
+            // Check country matches
+            if (selectedCountries.length > 0) {
+                matchesCountry = show.country && selectedCountries.some(country => 
+                    show.country.toLowerCase() === country.toLowerCase()
+                );
+            } else {
+                matchesCountry = true; // No country filter selected
+            }
+            
+            // Return shows that match all active filters
+            if (activeFilterTypes.has('genre') && activeFilterTypes.has('country')) {
+                return matchesGenre && matchesCountry;
+            } else if (activeFilterTypes.has('genre')) {
+                return matchesGenre;
+            } else if (activeFilterTypes.has('country')) {
+                return matchesCountry;
+            }
+            
+            return false;
+        });
+        
+        displayResults(results);
+    }
+
+    // Display results
+    function displayResults(results) {
+        const resultsContainer = document.getElementById('search-results');
+        const noResults = document.getElementById('no-results');
+        const pagination = document.getElementById('pagination');
+        const resultsInfo = document.getElementById('results-info');
+        const activeFiltersInfo = document.getElementById('active-filters-info');
+        
+        // Update active filters info
+        let filterInfo = '';
+        if (selectedGenres.length > 0) {
+            filterInfo += `<span class="font-medium">${selectedGenres.length} genre(s)</span>`;
+        }
+        if (selectedCountries.length > 0) {
+            if (filterInfo) filterInfo += ' and ';
+            filterInfo += `<span class="font-medium">${selectedCountries.length} country(ies)</span>`;
+        }
+        
+        if (filterInfo) {
+            activeFiltersInfo.innerHTML = `Filtering by: ${filterInfo}`;
+            activeFiltersInfo.classList.remove('hidden');
+        } else {
+            activeFiltersInfo.classList.add('hidden');
+        }
+        
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '';
+            noResults.classList.remove('hidden');
+            pagination.classList.add('hidden');
+            resultsInfo.textContent = 'No shows found with current filters';
+            return;
+        }
+        
+        noResults.classList.add('hidden');
+        resultsInfo.textContent = `Found ${results.length} shows`;
+        
+        // Apply pagination
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const paginatedResults = results.slice(startIndex, endIndex);
+        
+        // Render based on layout
+        if (currentLayout === 'grid') {
+            renderGridLayout(paginatedResults, resultsContainer);
+        } else {
+            renderListLayout(paginatedResults, resultsContainer);
+        }
+        
+        // Update pagination
+        updatePagination(results.length);
+    }
+
+    // Clear results
+    function clearResults() {
+        document.getElementById('search-results').innerHTML = '';
+        document.getElementById('no-results').classList.add('hidden');
+        document.getElementById('pagination').classList.add('hidden');
+        document.getElementById('results-info').textContent = 'Select genres and/or countries to filter shows';
+        document.getElementById('active-filters-info').classList.add('hidden');
+    }
+
+    // Clear all filters
+    function clearAllFilters() {
+        selectedGenres = [];
+        selectedCountries = [];
+        currentPage = 1;
+        
+        // Update URL
+        const url = new URL(window.location);
+        url.searchParams.delete('genres');
+        url.searchParams.delete('countries');
+        window.history.pushState({}, '', url);
+        
+        // Update UI
+        loadFilterGrids();
+        updateSelectedFiltersDisplay();
+        clearResults();
+    }
+
+    // Layout functions
+    function setLayout(layout) {
+        currentLayout = layout;
+        
+        const gridBtn = document.getElementById('grid-layout-btn');
+        const listBtn = document.getElementById('list-layout-btn');
+        
+        if (layout === 'grid') {
+            gridBtn.classList.add('bg-white', 'dark:bg-gray-700', 'shadow-sm', 'text-primary');
+            gridBtn.classList.remove('text-gray-500', 'dark:text-gray-400');
+            listBtn.classList.remove('bg-white', 'dark:bg-gray-700', 'shadow-sm', 'text-primary');
+            listBtn.classList.add('text-gray-500', 'dark:text-gray-400');
+        } else {
+            listBtn.classList.add('bg-white', 'dark:bg-gray-700', 'shadow-sm', 'text-primary');
+            listBtn.classList.remove('text-gray-500', 'dark:text-gray-400');
+            gridBtn.classList.remove('bg-white', 'dark:bg-gray-700', 'shadow-sm', 'text-primary');
+            gridBtn.classList.add('text-gray-500', 'dark:text-gray-400');
+        }
+        
+        // Re-render if we have results
+        if (selectedGenres.length > 0 || selectedCountries.length > 0) {
+            filterShows();
+        }
+    }
+
+    // Render functions
+    function renderGridLayout(shows, container) {
+        let html = '<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 lg:gap-6">';
+        
+        shows.forEach(show => {
+            const rating = show.type === 'anime' ? show.malScore : (show.imdbScore || 'N/A');
+            
+            html += `
+                <a href="${show.streamingUrl}" class="group relative block" target="_self">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-gray-200 dark:bg-surface-dark shadow-sm transition-all duration-300 group-hover:shadow-xl group-hover:scale-[1.03] group-hover:-translate-y-2">
+                        <img alt="${show.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${show.posterUrl}" loading="lazy"/>
+                        <div class="absolute top-2 right-2 bg-primary text-white text-xs font-bold px-2 py-1 rounded shadow-sm">HD</div>
+                        ${rating !== 'N/A' ? `
+                        <div class="absolute top-2 left-2 bg-black/70 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+                            <span class="material-symbols-outlined text-xs filled text-yellow-400">star</span> ${rating}
+                        </div>
+                        ` : ''}
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-3 left-3 right-3">
+                                <h3 class="text-sm font-bold text-white line-clamp-2">${show.title}</h3>
+                                <div class="flex items-center gap-2 text-xs text-gray-300 mt-1">
+                                    <span>${show.airedYear || ''}</span>
+                                    <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                    <span>${show.type}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-watch-btn flex items-center justify-center">
+                                <span class="material-symbols-outlined text-white text-2xl">play_arrow</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            `;
+        });
+        
+        html += '</div>';
+        container.innerHTML = html;
+    }
+
+    function renderListLayout(shows, container) {
+        let html = '<div class="space-y-4">';
+        
+        shows.forEach(show => {
+            const rating = show.type === 'anime' ? 
+                `MAL: ${show.malScore || 'N/A'}` : 
+                (show.imdbScore ? `IMDb: ${show.imdbScore}` : '');
+            
+            html += `
+                <a href="${show.streamingUrl}" class="group block" target="_self">
+                    <div class="flex items-start gap-4 p-4 bg-white dark:bg-surface-dark rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-800 hover:border-primary">
+                        <div class="flex-shrink-0 w-24 md:w-32">
+                            <div class="relative aspect-[2/3] rounded-lg overflow-hidden">
+                                <img alt="${show.title}" class="w-full h-full object-cover" src="${show.posterUrl}" loading="lazy"/>
+                                <div class="absolute top-2 right-2 bg-primary text-white text-xs font-bold px-1.5 py-0.5 rounded shadow-sm">HD</div>
+                            </div>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex flex-col md:flex-row md:items-start justify-between gap-2">
+                                <div>
+                                    <h3 class="text-lg md:text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors">${show.title}</h3>
+                                    ${show.japaneseTitle ? `<p class="text-sm text-gray-600 dark:text-gray-400 mt-1">${show.japaneseTitle}</p>` : ''}
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    ${rating !== 'N/A' ? `<span class="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm">
+                                        <span class="material-symbols-outlined text-xs filled text-yellow-400">star</span>
+                                        ${rating}
+                                    </span>` : ''}
+                                    <span class="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm">${show.type}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mt-3">
+                                ${show.airedYear ? `<span>${show.airedYear}</span>` : ''}
+                                ${show.airedYear && show.status ? `<span class="w-1 h-1 bg-gray-500 rounded-full"></span>` : ''}
+                                ${show.status ? `<span>${show.status}</span>` : ''}
+                                ${show.genres && show.genres.length > 0 ? `
+                                <span class="w-1 h-1 bg-gray-500 rounded-full"></span>
+                                <span>${show.genres.slice(0, 3).join(', ')}</span>
+                                ` : ''}
+                                ${show.country ? `
+                                <span class="w-1 h-1 bg-gray-500 rounded-full"></span>
+                                <span>${show.country}</span>
+                                ` : ''}
+                            </div>
+                            
+                            ${show.description ? `
+                            <div class="mt-3">
+                                <p class="expanded-description text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                                    ${show.description}
+                                </p>
+                                <button onclick="event.preventDefault(); toggleDescription(this)" class="mt-2 text-sm text-primary hover:text-opacity-80 transition-colors">
+                                    Read more
+                                </button>
+                            </div>
+                            ` : ''}
+                            
+                            <div class="mt-4">
+                                <button class="px-4 py-2 bg-watch-btn text-white rounded-lg font-medium hover:opacity-90 transition-colors flex items-center gap-2">
+                                    <span class="material-symbols-outlined">play_arrow</span>
+                                    Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            `;
+        });
+        
+        html += '</div>';
+        container.innerHTML = html;
+    }
+
+    // Pagination
+    function updatePagination(totalItems) {
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        const pagination = document.getElementById('pagination');
+        const pageNumbers = document.getElementById('page-numbers');
+        
+        if (totalPages <= 1) {
+            pagination.classList.add('hidden');
+            return;
+        }
+        
+        pagination.classList.remove('hidden');
+        pageNumbers.textContent = `Page ${currentPage} of ${totalPages}`;
+    }
+
+    function changePage(direction) {
+        if (selectedGenres.length === 0 && selectedCountries.length === 0) return;
+        
+        const results = showsData.filter(show => {
+            let matchesGenre = false;
+            let matchesCountry = false;
+            
+            if (selectedGenres.length > 0) {
+                matchesGenre = show.genres && selectedGenres.some(genre => 
+                    show.genres.some(g => g.toLowerCase() === genre.toLowerCase())
+                );
+            } else {
+                matchesGenre = true;
+            }
+            
+            if (selectedCountries.length > 0) {
+                matchesCountry = show.country && selectedCountries.some(country => 
+                    show.country.toLowerCase() === country.toLowerCase()
+                );
+            } else {
+                matchesCountry = true;
+            }
+            
+            if (activeFilterTypes.has('genre') && activeFilterTypes.has('country')) {
+                return matchesGenre && matchesCountry;
+            } else if (activeFilterTypes.has('genre')) {
+                return matchesGenre;
+            } else if (activeFilterTypes.has('country')) {
+                return matchesCountry;
+            }
+            
+            return false;
+        });
+        
+        const totalPages = Math.ceil(results.length / itemsPerPage);
+        const newPage = currentPage + direction;
+        if (newPage < 1 || newPage > totalPages) return;
+        
+        currentPage = newPage;
+        displayResults(results);
+    }
+
+    // Helper functions
+    function toggleDescription(button) {
+        const description = button.previousElementSibling;
+        description.classList.toggle('expanded');
+        button.textContent = description.classList.contains('expanded') ? 'Read less' : 'Read more';
+    }
+
+    // Sample data for fallback
+    function getSampleData() {
+        return [
+            {
+                id: "demon-slayer",
+                title: "Demon Slayer: Kimetsu no Yaiba",
+                type: "anime",
+                posterUrl: "https://cdn.myanimelist.net/images/anime/1286/99889l.jpg",
+                streamingUrl: "streaming.html?id=demon-slayer",
+                description: "Tanjiro Kamado becomes a demon slayer after his family is slaughtered and his sister is turned into a demon.",
+                genres: ["Action", "Adventure", "Fantasy", "Supernatural"],
+                country: "Japan",
+                airedYear: 2019,
+                malScore: 8.67,
+                status: "Finished Airing"
+            },
+            {
+                id: "attack-on-titan",
+                title: "Attack on Titan",
+                type: "anime",
+                posterUrl: "https://cdn.myanimelist.net/images/anime/10/47347l.jpg",
+                streamingUrl: "streaming.html?id=attack-on-titan",
+                description: "Humanity lives inside cities surrounded by enormous walls due to the Titans, gigantic humanoid creatures who devour humans.",
+                genres: ["Action", "Drama", "Fantasy", "Military", "Mystery"],
+                country: "Japan",
+                airedYear: 2013,
+                malScore: 8.54,
+                status: "Finished Airing"
+            },
+            {
+                id: "breaking-bad",
+                title: "Breaking Bad",
+                type: "tv",
+                posterUrl: "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
+                streamingUrl: "streaming.html?id=breaking-bad",
+                description: "A high school chemistry teacher diagnosed with lung cancer turns to manufacturing and selling methamphetamine.",
+                genres: ["Crime", "Drama", "Thriller"],
+                country: "USA",
+                airedYear: 2008,
+                imdbScore: 9.5,
+                status: "Finished"
+            }
+        ];
+    }
+
+    // Mobile Menu functions
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('mobile-menu-overlay');
+        menu.classList.toggle('menu-open');
+        overlay.classList.toggle('hidden');
+    }
+
+    function toggleMobileDropdown(id) {
+        const dropdown = document.getElementById(id);
+        dropdown.classList.toggle('hidden');
+        const arrowId = id === 'genre-mobile' ? 'genre-arrow' : 'country-arrow';
+        const arrow = document.getElementById(arrowId);
+        if (dropdown.classList.contains('hidden')) {
+            arrow.style.transform = 'rotate(0deg)';
+        } else {
+            arrow.style.transform = 'rotate(180deg)';
+        }
+    }
+</script>
+</body>
+</html>
